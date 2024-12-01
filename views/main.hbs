@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Operation</title>
+</head>
+<body>
+    
+   <div style="text-align: center;">
+     <h1 style="color:blue;" >CRUD Operation</h1>
+    <p style="color:red;">{{message}}</p>
+    <br>
+    {{#if edit_id}}
+     <h3>Edit</h3>
+    <form method="post" id="box2" action="/update_book/{{edit_id}}" >
+        <label for="">Name</label>
+        <input type="text" name="name"   value="{{edit_book.name}}"><br>
+        <label for="">Email</label>
+        <input type="email" name="email" value="{{edit_book.email}}"><br>
+        <label for="">Age</label>
+        <input type="number" name="age" value="{{edit_book.age}}"><br>
+
+        <input type="submit" style="color: royalblue;">
+       
+    </form><br><br>
+    <style>
+    /* General form styles */
+    #box2 {
+        border: 1px solid #434443;
+        padding: 20px;
+        width: 300px;
+        margin: 20px auto;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+    }
+
+    /* Input box styles */
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box; 
+    }
+     input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box; 
+    }
+
+ input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box; 
+    }
+
+
+    /* Submit button style */
+    input[type="submit"] {
+        padding: 10px 20px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    /* Submit button hover effect */
+   
+    /* Label styling */
+    label {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+        display: flex;
+        text-align: left;
+    }
+</style>
+
+    {{else}}
+
+    <h3>Create</h3>
+    <form method="post" id="box1" action="/store_book">
+        <label for="">Name</label>
+        <input type="text" name="name"><br>
+        <label for="">Email</label>
+        <input type="email" name="email"><br>
+        <label for="">Age</label>
+        <input type="number" name="age"><br>
+        <input type="submit" style="color: royalblue;">
+    </form><br><br>
+    
+<style>
+    /* General form styles */
+    #box1 {
+        border: 1px solid #434443;
+        padding: 20px;
+        width: 300px;
+        margin: 20px auto;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+    }
+
+    /* Input box styles */
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box; 
+    }
+
+    
+     input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box; 
+    }
+
+ input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box; 
+    }
+
+
+    /* Submit button style */
+    input[type="submit"] {
+        padding: 10px 20px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    /* Submit button hover effect */
+   
+    /* Label styling */
+    label {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+        display: flex;
+        text-align: left;
+    }
+</style>
+
+
+   {{/if}}
+
+    <ul>
+        {{#each books}}
+        <li style="list-style : none;"> <b>Name :</b>{{this.name}} <b>Email :</b> {{this.email}} <b>Age :</b>{{this.age}} 
+            <a href="/?edit_id={{this._id}}">
+            
+            <button style="cursor:pointer; border:none;color: white;background-color:green;padding:5px 10px;border-radius:5px;">Edit</button></a>  
+            <a href="/?delete_id={{this._id}}" onclick="return confirm('Are you sure want to delete?')" >
+            <button style="cursor:pointer;  padding:5px 10px;border-radius:5px; border:none;color: white;background-color:red">Delete</button></a>
+            
+        </li><br>
+        {{/each}}
+    </ul>
+   </div>
+</body>
+</html> 
